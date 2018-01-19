@@ -1,0 +1,12 @@
+{
+  "name":"jmcphers/datingsite",
+  "authors":[
+    {
+      "name":"James McPherson",
+      "email":"tostrander@greenriver.edu"
+    }
+  ],
+  "require":{
+    "bcosca/fatfree-core":"dev-master"
+  }
+}
