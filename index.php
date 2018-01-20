@@ -3,12 +3,11 @@
 require_once 'vendor/autoload.php';
 
 $f3 = Base::instance();
+$f3->set('DEBUG', 3);
 
 $f3->route('GET /', function(){
-    $view = new View();
-    echo $view->render('pages/home.html');
+    $template= new Template();
+    echo $template->render('pages/home.html');
 });
 
 $f3->run();
-
-?>
