@@ -6,7 +6,7 @@ $f3 = Base::instance();
 
 $f3->route('GET /', function(){
     $view = new View();
-    echo $view->render('views/home.html');
+    echo $view->render('pages/home.html');
 });
 
 $f3->run();
