@@ -26,7 +26,7 @@
         <div class = "container">
             <p class = "h2" style="margin: 20px">Personal Information</p>
             <hr>
-            <form>
+            <form method="post" action = "profile.php">
             <div class="row" style="padding: 15px">
                 <div class="col-sm-8">
                         <div class="form-group">

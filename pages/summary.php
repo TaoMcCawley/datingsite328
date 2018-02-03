@@ -26,13 +26,23 @@
         <div class = "container">
             <div class="row" style="padding: 15px">
                 <div class="col-sm-6">
-
+                    <ul class="list-group">
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                    </ul>
                 </div>
                 <div class = "col-sm-6">
                     <img src = "{{@BASE}}/images/profilepic.jpg"alt = "your picture!">
                     <div class = "h4">Biography</div>
-
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus mattis hendrerit. Suspendisse eu ultricies leo. Duis porta erat a ex ullamcorper aliquet. Donec eget sagittis tellus. Vivamus id interdum sem. Donec id iaculis risus. Nunc vitae auctor felis. Suspendisse dictum elit sollicitudin, sollicitudin lectus vitae, ullamcorper nibh. Vivamus non malesuada leo. Aliquam hendrerit consequat ipsum, nec cursus quam posuere vitae. Mauris sagittis volutpat diam sit amet tempus. Maecenas ac molestie urna. Ut egestas lacus nec tortor sodales faucibus.
+                    </p>
                 </div>
+            </div>
+            <div class = "text-center" style="padding-bottom: 20px;">
+                <button type="button" class="btn btn-primary">Create a profile!</button>
             </div>
         </div>
     </div>

@@ -44,7 +44,7 @@
                         <hr>
 
                         <div class = "text-center">
-                            <button type="button" class="btn btn-primary">Create a profile!</button>
+                            <button type="button" class="btn btn-primary" formaction="information.php">Create a profile!</button>
                         </div>
                     </div>
                 </div>
