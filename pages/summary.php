@@ -16,18 +16,23 @@
 
 </head>
 <body>
+
+<div class = "navbar header">
+    <h3>My Dating Website</h3>
+</div>
+
 <div class = "container">
     <div class = "border border-dark" style="margin: 20px">
         <div class = "container">
             <div class="row" style="padding: 15px">
-                <div class="col-sm-8">
-                     <p class = "h2">My Dating Website</p>
-                    <hr>
-                    <label></label>
-                </div>
-                <div class = "col-sm-4">
-                </div>
+                <div class="col-sm-6">
 
+                </div>
+                <div class = "col-sm-6">
+                    <img src = "{{@BASE}}/images/profilepic.jpg"alt = "your picture!">
+                    <div class = "h4">Biography</div>
+
+                </div>
             </div>
         </div>
     </div>
