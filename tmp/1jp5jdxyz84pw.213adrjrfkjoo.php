@@ -5,11 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{@BASE}}/styles/styles.css">
+    <link rel="stylesheet" href="<?= ($BASE) ?>/styles/styles.css">
 
     <title>Dating site</title>
 </head>
@@ -43,14 +41,17 @@
                         <p><em>"Just try it! You'll never feel the same!"</em></p>
                         <hr>
 
-                        <div class = "text-center">
-                            <button type="button" class="btn btn-primary" formaction="information.php">Create a profile!</button>
-                        </div>
+                        <form action = "<?= ($BASE) ?>/pages/information.php">
+                            <div class = "text-center">
+                                <button type="button" class="btn btn-primary">Create a profile!</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
 
                 <div class="col-sm-6">
-                    <img src="{{@BASE}}/images/dates.jpg" class="rounded" alt="dates" width = 500 height="500">
+                    <img src="<?= ($BASE) ?>/images/dates.jpg" class="rounded" alt="dates" width = 500 height="500">
                 </div>
 
 

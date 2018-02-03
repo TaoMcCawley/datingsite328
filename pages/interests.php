@@ -20,7 +20,7 @@
                 <p class = "h2" style="margin-top: 20px">Interests</p>
                 <hr>
                     <h6>In-door interests</h6>
-                <form>
+                <form action = "summary.php" method="post">
                     <div class = "row">
                         <div class = "col-sm-3">
                             <div class="form-check form-check-inline">

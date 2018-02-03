@@ -21,7 +21,7 @@
         <div class = "container">
             <p class = "h1" style="padding-top: 15px">Profile</p>
             <hr>
-            <form>
+            <form action = "interests.php" method="post">
                 <div class="row" style="padding: 15px">
                     <div class="col-sm-6">
                         <div class="form-group">
