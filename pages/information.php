@@ -1,9 +1,3 @@
-<?php
-    if(isset($_POST['submit'])){
-        //Set everythint to a session.
-
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -40,10 +40,8 @@
 
                         <p><em>"Just try it! You'll never feel the same!"</em></p>
                         <hr>
-
-                        <form action = "<?= ($BASE) ?>/pages/information.php">
                             <div class = "text-center">
-                                <button type="button" class="btn btn-primary">Create a profile!</button>
+                                <button type="button" class="btn btn-primary" role = "button" href="information.php"><a href = "<?= ($BASE) ?>/pages/information.php">Create a profile!</a></button>
                             </div>
                         </form>
 

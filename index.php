@@ -11,10 +11,6 @@ $f3->route('GET /', function(){
     echo $template->render('pages/home.php');
 });
 
-$f3->route('POST /information', function(){
 
-    $template= new Template();
-    echo $template->render('pages/information.php');
-});
 
 $f3->run();
