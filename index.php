@@ -102,10 +102,17 @@ $f3->route("GET|POST /profile", function($f3){
             $_SESSION['biography'] = $_POST['biography'];
             $f3->set('biography', $_SESSION['biography']);
         }else{
-            $error = "pick a valid state!";
+            $error = "create a biography!";
             array_push($errors, $error);
         }
 
+        if(isset($_POST['seekinggender'])){
+            $_SESSION['seekinggender'] = $_POST['seekinggender'];
+            $f3->set('seekinggender', $_SESSION['seekinggender']);
+        }else{
+            $error = "gender is not selected!";
+            array_push($errors, $error);
+        }
 
         //Checks to see if there are errors, and if none, move on the the next page. Otherwise, go back
         if(sizeof($errors) > 0){
@@ -121,10 +128,8 @@ $f3->route("GET|POST /profile", function($f3){
         $template = new Template();
         echo $template->render('pages/profile.html');
     }
-
-
-
 });
+
 
 
 

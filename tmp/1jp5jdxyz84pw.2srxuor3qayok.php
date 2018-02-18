@@ -92,10 +92,10 @@
                             </select>
                         </div>
                         <label for="inlineRadio1"><strong>Seeking</strong></label>
-                        <div class = "form-group">
+                        <div class = "form-group" >
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="seekinggender" id="inlineRadio1" value="male">
+                                <input class="form-check-input" type="radio" name="seekinggender" id="inlineRadio1" value="male" required>
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -108,7 +108,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="profilebiography"><strong>Biography</strong></label>
-                            <textarea class="form-control" id="profilebiography" rows="6"></textarea>
+                            <textarea class="form-control" id="profilebiography" rows="6" name = "biography" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style=" margin-top: 2em; margin-left: 26em;" name = "submit">Next></button>
                     </div>
