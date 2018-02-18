@@ -6,7 +6,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{@BASE}}/styles/styles.css">
+    <link rel="stylesheet" href="<?= ($BASE) ?>/styles/styles.css">
 
     <title>Personal Information</title>
 </head>
@@ -21,16 +21,16 @@
         <div class = "container">
             <p class = "h1" style="padding-top: 15px">Profile</p>
             <hr>
-            <form action = "interests.php" method="post">
+            <form action = "<?= ($BASE) ?>/profile" method="post">
                 <div class="row" style="padding: 15px">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="emailAddress"><strong>Email address</strong></label>
-                            <input type="email" class="form-control" id="emailAddress" placeholder="my_email@gmail.com">
+                            <input type="email" class="form-control" id="emailAddress" name = "emailAddress" placeholder="my_email@gmail.com" value="<?= ($emailAddress) ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="locationState"><strong>State</strong></label>
-                            <select class="form-control" id="locationState">
+                            <select class="form-control" id="locationState" name = "locationState" required>
                                 <option>Alabama</option>
                                 <option>Alaska</option>
                                 <option>Arizona</option>
@@ -110,7 +110,7 @@
                             <label for="profilebiography"><strong>Biography</strong></label>
                             <textarea class="form-control" id="profilebiography" rows="6"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style=" margin-top: 2em; margin-left: 26em;">Next></button>
+                        <button type="submit" class="btn btn-primary" style=" margin-top: 2em; margin-left: 26em;" name = "submit">Next></button>
                     </div>
                 </div>
             </form>
