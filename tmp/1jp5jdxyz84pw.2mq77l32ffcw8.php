@@ -6,7 +6,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{@BASE}}/styles/styles.css">
+    <link rel="stylesheet" href="<?= ($BASE) ?>/styles/styles.css">
 
 </head>
 <body>
@@ -20,10 +20,10 @@
                 <p class = "h2" style="margin-top: 20px">Interests</p>
                 <hr>
                     <h6>In-door interests</h6>
-                <check if = "{{ sizeof(@errors) > 0 }}">
-                    <true><div class = "alert alert-danger"> You have errors, please check again</div></true>
-                </check>
-                <form action = "{{@BASE}}/interests" method="post">
+                <?php if (sizeof($errors) > 0): ?>
+                    <div class = "alert alert-danger"> You have errors, please check again</div>
+                <?php endif; ?>
+                <form action = "<?= ($BASE) ?>/interests" method="post">
                     <div class = "row">
                         <div class = "col-sm-3">
                             <div class="form-check form-check-inline">

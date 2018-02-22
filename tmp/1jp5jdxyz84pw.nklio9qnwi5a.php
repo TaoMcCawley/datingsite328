@@ -28,21 +28,21 @@
                 <div class="col-sm-8">
                         <div class="form-group">
                             <label for="inputFirstName"><strong>First Name</strong></label>
-                            <input type="text" class="form-control" id="inputFirstName" name = 'inputFirstName' placeholder="Sarah" value = "<?= ($firstName) ?>">
+                            <input type="text" class="form-control" id="inputFirstName" name = 'inputFirstName' placeholder="Sarah" value = "<?= ($firstName) ?>" required>
 
                         </div>
                         <div class="form-group">
                             <label for="inputLastName"><strong>Last Name</strong></label>
-                            <input type="text" class="form-control" id="inputLastName" name = 'inputLastName' placeholder="Smith" value="<?= ($lastName) ?>">
+                            <input type="text" class="form-control" id="inputLastName" name = 'inputLastName' placeholder="Smith" value="<?= ($lastName) ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="inputAge"><strong>Age</strong></label>
-                            <input type="text" class="form-control" id="inputAge" name = 'age' placeholder="30" value = "<?= ($age) ?>">
+                            <input type="text" class="form-control" id="inputAge" name = 'age' placeholder="30" value = "<?= ($age) ?>" required>
                         </div>
                         <label for="inlineRadio1"><strong>Gender</strong></label>
                         <div class = "form-group">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" required>
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phonenumber"><strong>Phone Number</strong></label>
-                            <input type="text" class="form-control" id="phonenumber" name = "phoneNumber" placeholder="222-333-4444" value = "<?= ($phoneNumber) ?>">
+                            <input type="text" class="form-control" id="phonenumber" name = "phoneNumber" placeholder="222-333-4444" value = "<?= ($phoneNumber) ?>" required>
                         </div>
 
                     <label></label>

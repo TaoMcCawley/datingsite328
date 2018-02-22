@@ -106,6 +106,7 @@ $f3->route("GET|POST /profile", function($f3){
             array_push($errors, $error);
         }
 
+        //Checks to make sure that the seeking gender button is checked
         if(isset($_POST['seekinggender'])){
             $_SESSION['seekinggender'] = $_POST['seekinggender'];
             $f3->set('seekinggender', $_SESSION['seekinggender']);
@@ -122,7 +123,7 @@ $f3->route("GET|POST /profile", function($f3){
 
         }else{
             $_POST["submit"] = null;
-            $f3->reroute("pages/interests.html");
+            $f3->reroute("/interests");
         }
     }else{
         $template = new Template();
@@ -130,7 +131,65 @@ $f3->route("GET|POST /profile", function($f3){
     }
 });
 
+$f3->route("GET|POST /interests", function ($f3){
 
+    $errors = array();
+
+    if(isset($_POST['submit'])){
+
+        if(!validIndoor($_POST['indooractivities'])){
+            $error = "Indoor Interests are invalid!";
+            array_push($errors, $error);
+        }
+        else{
+            $_SESSION['indooractivities'] = $_POST['indooractivities'];
+            $f3->set('indooractivites', $_SESSION['indooractivities']);
+        }
+
+        if(!validOutdoor($_POST['outdooractivities'])){
+            $error = "Outdoor Interests are invalid!";
+            array_push($errors, $error);
+        }
+        else{
+            $_SESSION['outdooractivities'] = $_POST['outdooractivities'];
+            $f3->set('outdooractivities', $_SESSION['outdooractivities']);
+        }
+
+
+        if(sizeof($errors) > 0){
+            $f3->set("errors", $errors);
+            $template = new Template();
+            echo $template->render('pages/interests.html');
+
+        }else{
+            $_POST["submit"] = null;
+            $f3->reroute("/summary");
+        }
+
+    }else{
+        $template = new Template();
+        echo $template->render('pages/interests.html');
+    }
+});
+
+$f3->route("GET|POST /summary", function($f3){
+
+    $totalInterestsArray = array_merge($_SESSION['indooractivities'], $_SESSION['outdooractivities']);
+
+    $f3->set('fName',$_SESSION['firstName']);
+    $f3->set('lName',$_SESSION['lastName']);
+    $f3->set('age',$_SESSION['age']);
+    $f3->set('phoneNumber',$_SESSION['phoneNumber']);
+    $f3->set('emailAddress',$_SESSION['emailAddress']);
+    $f3->set('locationState',$_SESSION['locationState']);
+    $f3->set('seekingGender',$_SESSION['seekinggender']);
+    $f3->set('interests', $totalInterestsArray);
+    $f3->set('biography', $_SESSION['biography']);
+
+    $template = new Template();
+    echo $template->render('pages/summary.html');
+
+});
 
 
 $f3->run();
