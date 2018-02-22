@@ -178,6 +178,7 @@ $f3->route("GET|POST /summary", function($f3){
 
     $f3->set('fName',$_SESSION['firstName']);
     $f3->set('lName',$_SESSION['lastName']);
+    $f3->set('gender', $_SESSION['gender']);
     $f3->set('age',$_SESSION['age']);
     $f3->set('phoneNumber',$_SESSION['phoneNumber']);
     $f3->set('emailAddress',$_SESSION['emailAddress']);
