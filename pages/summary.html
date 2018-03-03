@@ -32,7 +32,10 @@
                         <li class="list-group-item">Email:    {{@emailAddress}}</li>
                         <li class="list-group-item">State:    {{@locationState}}</li>
                         <li class="list-group-item">Seeking:    {{@seekingGender}}</li>
-                        <li class="list-group-item">Interests:    <repeat group="{{ @interests }}" value="{{ @value }}">{{ trim(@value) }}, </repeat></li>
+
+                        <check if = "{{@userIsPremium == true}}">
+                            <true><li class="list-group-item">Interests:    <repeat group="{{ @interests }}" value="{{ @value }}">{{ trim(@value) }}, </repeat></li></true>
+                        </check>
                     </ul>
                 </div>
                 <div class = "col-sm-6">

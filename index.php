@@ -195,8 +195,11 @@ $f3->route("GET|POST /interests", function ($f3){
 $f3->route("GET|POST /summary", function($f3){
 
 
-
+    //Defining variables as null because they are determinant on being a premium user or not
     $user = null;
+    $totalInterestsArray = null;
+    $userIsPremium = null;
+
     if($_SESSION['premium'] == true){
         $user = new PremiumMember(
             $_SESSION['firstName'],
@@ -210,6 +213,10 @@ $f3->route("GET|POST /summary", function($f3){
             $_SESSION['biography'],
             $_SESSION['indooractivities'],
             $_SESSION['outdooractivities']);
+
+        $totalInterestsArray = array_merge($user->getIndoorInterests(), $user->getOutdoorInterests());
+        $userIsPremium = true;
+        $f3->set('interests', $totalInterestsArray);
     }
     else{
         $user = new Member(
@@ -222,11 +229,13 @@ $f3->route("GET|POST /summary", function($f3){
             $_SESSION['locationState'],
             $_SESSION['seekinggender'],
             $_SESSION['biography']);
+
+        $userIsPremium = false;
     }
 
-    $totalInterestsArray = array_merge($user->getIndoorInterests(), $user->getOutdoorInterests());
 
-    f3->set('localUser', $user);
+
+    $f3->set('localUser', $user);
 
     $f3->set('fName',$user->getFName());
     $f3->set('lName',$user->getLName());
@@ -236,8 +245,8 @@ $f3->route("GET|POST /summary", function($f3){
     $f3->set('emailAddress',$user->getEmail());
     $f3->set('locationState',$user->getState());
     $f3->set('seekingGender',$user->getSeeking());
-    $f3->set('interests', $totalInterestsArray);
     $f3->set('biography', $user->getBio());
+    $f3->set('userIsPremium', $userIsPremium);
 
     $template = new Template();
     echo $template->render('pages/summary.html');
