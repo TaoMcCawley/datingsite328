@@ -42,17 +42,22 @@
                         <label for="inlineRadio1"><strong>Gender</strong></label>
                         <div class = "form-group">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" required>
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" required>
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
                                 <label class="form-check-label" for="inlineRadio2">Female</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phonenumber"><strong>Phone Number</strong></label>
                             <input type="text" class="form-control" id="phonenumber" name = "phoneNumber" placeholder="222-333-4444" value = "<?= ($phoneNumber) ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premium"><strong>Premium Account</strong></label>
+                            <input type="checkbox" class="form-control" id="premium" name = "premium" value = 'premium' style = 'width: 15px;' placeholder="Sign me up for a Premium Account!">Sign me up for a Premium Account!
                         </div>
 
                     <label></label>

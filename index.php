@@ -2,6 +2,8 @@
 
 require_once 'vendor/autoload.php';
 require_once 'models/validate.php';
+require_once 'classes/member.php';
+require_once 'classes/premiummember.php';
 session_start();
 
 $f3 = Base::instance();
@@ -15,6 +17,7 @@ $f3->route('GET /', function(){
 
 $f3->route('GET|POST /info', function($f3, $params){
     $errors = array();
+
     if(isset($_POST['submit'])){
         if(isset($_POST['inputFirstName'])) {
             if (validName($_POST['inputFirstName'])) {
@@ -63,6 +66,14 @@ $f3->route('GET|POST /info', function($f3, $params){
             }
         }
 
+        //If the user checked the premium box
+        if(isset($_POST['premium']) && $_POST['premium'] == 'premium'){
+            $_SESSION['premium'] = true;
+
+        }else{ //If premium is not set
+            $_SESSION['premium'] = false;
+        }
+
         if(sizeof($errors) > 0){
             $f3->set("errors", $errors);
             $template = new Template();
@@ -80,6 +91,8 @@ $f3->route('GET|POST /info', function($f3, $params){
 
 $f3->route("GET|POST /profile", function($f3){
     $errors = array();
+
+
     //Makes sure the submit button was pushed
     if(isset($_POST['submit'])){
         if(($_POST['emailAddress'])){
@@ -122,8 +135,15 @@ $f3->route("GET|POST /profile", function($f3){
             echo $template->render('pages/profile.html');
 
         }else{
+            $nextPage;
             $_POST["submit"] = null;
-            $f3->reroute("/interests");
+            if($_SESSION['premium'] == true){
+                $nextPage = '/interests';
+            }
+            else{
+                $nextPage = '/summary';
+            }
+            $f3->reroute($nextPage);
         }
     }else{
         $template = new Template();
@@ -174,18 +194,50 @@ $f3->route("GET|POST /interests", function ($f3){
 
 $f3->route("GET|POST /summary", function($f3){
 
-    $totalInterestsArray = array_merge($_SESSION['indooractivities'], $_SESSION['outdooractivities']);
 
-    $f3->set('fName',$_SESSION['firstName']);
-    $f3->set('lName',$_SESSION['lastName']);
-    $f3->set('gender', $_SESSION['gender']);
-    $f3->set('age',$_SESSION['age']);
-    $f3->set('phoneNumber',$_SESSION['phoneNumber']);
-    $f3->set('emailAddress',$_SESSION['emailAddress']);
-    $f3->set('locationState',$_SESSION['locationState']);
-    $f3->set('seekingGender',$_SESSION['seekinggender']);
+
+    $user = null;
+    if($_SESSION['premium'] == true){
+        $user = new PremiumMember(
+            $_SESSION['firstName'],
+            $_SESSION['lastName'],
+            $_SESSION['age'],
+            $_SESSION['gender'],
+            $_SESSION['phoneNumber'],
+            $_SESSION['emailAddress'],
+            $_SESSION['locationState'],
+            $_SESSION['seekinggender'],
+            $_SESSION['biography'],
+            $_SESSION['indooractivities'],
+            $_SESSION['outdooractivities']);
+    }
+    else{
+        $user = new Member(
+            $_SESSION['firstName'],
+            $_SESSION['lastName'],
+            $_SESSION['age'],
+            $_SESSION['gender'],
+            $_SESSION['phoneNumber'],
+            $_SESSION['emailAddress'],
+            $_SESSION['locationState'],
+            $_SESSION['seekinggender'],
+            $_SESSION['biography']);
+    }
+
+    $totalInterestsArray = array_merge($user->getIndoorInterests(), $user->getOutdoorInterests());
+
+    f3->set('localUser', $user);
+
+    $f3->set('fName',$user->getFName());
+    $f3->set('lName',$user->getLName());
+    $f3->set('gender', $user->getGender());
+    $f3->set('age',$user->getAge());
+    $f3->set('phoneNumber',$user->getPhone());
+    $f3->set('emailAddress',$user->getEmail());
+    $f3->set('locationState',$user->getState());
+    $f3->set('seekingGender',$user->getSeeking());
     $f3->set('interests', $totalInterestsArray);
-    $f3->set('biography', $_SESSION['biography']);
+    $f3->set('biography', $user->getBio());
 
     $template = new Template();
     echo $template->render('pages/summary.html');
