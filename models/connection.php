@@ -49,7 +49,8 @@
         $statement->bindParam(':seeking', $user->getSeeking(), PDO::PARAM_STR);
         $statement->bindParam(':bio', $user->getBio(), PDO::PARAM_STR);
 
-        try{
+        $isPremium = method_exists($user, 'getIndoorInterests');
+        if($isPremium){
             $indoorInterests = $user->getIndoorInterests();
             $outdoorInterests = $user->getOutdoorInterests();
 
@@ -58,12 +59,16 @@
             $statement->bindParam(':premium', 1, PDO::PARAM_INT);
             $statement->bindParam(':image', null, PDO::PARAM_STR);
             $statement->bindParam(':interests', implode($totalInterests), PDO::PARAM_STR);
-        }catch (PDOException $e){
-
+        }else{
             $statement->bindParam(':premium', 0, PDO::PARAM_INT);
             $statement->bindParam(':image', null, PDO::PARAM_STR);
             $statement->bindParam(':interests', null, PDO::PARAM_STR);
         }
+
+        $statement->execute();
+
+
+
 
 
 
