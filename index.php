@@ -135,7 +135,7 @@ $f3->route("GET|POST /profile", function($f3){
             echo $template->render('pages/profile.html');
 
         }else{
-            $nextPage;
+            $nextPage = null;
             $_POST["submit"] = null;
             if($_SESSION['premium'] == true){
                 $nextPage = '/interests';
