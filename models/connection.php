@@ -22,18 +22,22 @@
     include '../classes/member.php';
     include '../classes/premiummember.php';
 
-    $dbh = null;
-    try{
-        //Instantiate a new database object
-        $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-        echo 'connected to Database!';
+    function getConnection(){
+        try{
+            //Instantiate a new database object
+            $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+            echo 'connected to Database!';
+            return $dbh;
 
 
-    }catch (PDOException $e){
-        echo $e->getMessage();
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
+
     function addUser($user){
+        $dbh = getConnection();
         $sql = "INSERT INTO members(fName, lName, age, gender, phone, email, state, seeking, bio, premium, image, interests)
                 VALUES(:fName, :lName, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium, :image, :interests)";
 
@@ -50,30 +54,29 @@
         $statement->bindParam(':bio', $user->getBio(), PDO::PARAM_STR);
 
         $isPremium = method_exists($user, 'getIndoorInterests');
+
+        //It's important to send premium as a number, so we will convert it to one here.
+
+        $imagePath = null;
+        $totalInterests = '';
         if($isPremium){
+            $isPremium = 1;
             $indoorInterests = $user->getIndoorInterests();
             $outdoorInterests = $user->getOutdoorInterests();
 
             $totalInterests = array_merge($indoorInterests, $outdoorInterests);
 
-            $statement->bindParam(':premium', 1, PDO::PARAM_INT);
-            $statement->bindParam(':image', null, PDO::PARAM_STR);
+            $statement->bindParam(':premium', $isPremium, PDO::PARAM_INT);
+            $statement->bindParam(':image', $imagePath, PDO::PARAM_STR);
             $statement->bindParam(':interests', implode($totalInterests), PDO::PARAM_STR);
         }else{
-            $statement->bindParam(':premium', 0, PDO::PARAM_INT);
-            $statement->bindParam(':image', null, PDO::PARAM_STR);
-            $statement->bindParam(':interests', null, PDO::PARAM_STR);
+            $isPremium = 0;
+            $statement->bindParam(':premium', $isPremium, PDO::PARAM_INT);
+            $statement->bindParam(':image', $imagePath, PDO::PARAM_STR);
+            $statement->bindParam(':interests', $totalInterests, PDO::PARAM_STR);
         }
 
         $statement->execute();
-
-
-
-
-
-
-
-
     }
 
     function getUsers(){
